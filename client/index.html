@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>五子棋 - 541612010118</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/socket.io-client/dist/socket.io.js"></script>
+    <style>
+        body,html,canvas,div{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color:antiquewhite;
+        }
+        .bordContainer{
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 100px auto
+        }
+        .bordContainer .item{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer; 
+        }
+        .bordContainer canvas{   
+            background: #ccc;
+            border: 1px solid green
+        }
+        .header{
+            height: 60px;
+            background: #f0faff;
+            position: relative;
+        }
+        .user,.room{
+            box-sizing: border-box;
+            display: inline-block;
+            height: 28px;
+            color:#666;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+        }
+        .btn{
+            box-sizing: border-box;
+            display: inline-block;
+            height: 60px;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            background-color: #57a3f3;
+        }
+        .userInfo{
+            float: left;
+            width: 100px;
+            height: 60px;
+            background-color:yellowgreen;
+        }
+        .userInfo .user-item{
+            height: 100%;
+            width: 50px;
+            float: left;
+            color:darkcyan;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 50px;
+            text-align: center
+        }
+        .tip{
+            float: left;
+            width: 200px;
+            height: 100%;
+            color:#2b85e4;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 60px;
+            text-align: center
+        }
+    </style>
+</head>
+<body onbeforeunload="checkLeave()">
+   <div class="header">
+        <!-- 用户名，房间号输入 -->
+        <div style="float: left;">
+            <div>
+                用&nbsp; 户&nbsp; 名:<input type="text" class="user">
+            </div>
+            <div>
+                游戏桌号 :<input type="text" class="room">
+            </div>
+        </div>
+        <div style="float: left;height: 60px;">
+            <button class="btn">进入</button>
+        </div>
+        <!-- 用户信息 -->
+        <div class="userInfo"></div>
+        <!-- 谁先落棋提示 -->
+        <div class="tip"></div>
+   </div>
+   <div id="houselist">
+       
+   </div>
+    <!-- 棋盘 -->
+    <div class="bordContainer">
+        <canvas id="canvas" width="600" height="600"></canvas>
+    </div>
+    
+    <script src="./chess.js"></script>
+    <script src="./checkerboard.js"></script>
+    <script src="./resolve.js"></script>
+
+</body>
+</html>
